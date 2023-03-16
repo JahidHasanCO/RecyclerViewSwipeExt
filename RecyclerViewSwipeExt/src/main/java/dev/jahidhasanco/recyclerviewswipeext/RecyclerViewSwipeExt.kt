@@ -1,22 +1,19 @@
-package dev.jahidhasanco.recyclerviewswipeextdemo.lib
+package dev.jahidhasanco.recyclerviewswipeext
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import dev.jahidhasanco.recyclerviewswipeextdemo.R
-import dev.jahidhasanco.recyclerviewswipeextdemo.lib.SwipeLeftRightCallback.Listener
 
+class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val recyclerView: RecyclerView): SwipeListener {
 
-class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val recyclerView: RecyclerView): Listener {
-
-    private var mListener: Listener? = null
-    private lateinit var mSwipedView: SwipedView
+    private var mListener: SwipeListener? = null
+    private lateinit var mSwipedView: SwipeView
 
     init {
         createSwipedView(context,attrs);
-       recyclerView.setWillNotDraw(false);
+        recyclerView.setWillNotDraw(false);
     }
 
     fun setRightBg(bg: Int): RecyclerViewSwipeExt {
@@ -87,7 +84,7 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
         return this
     }
 
-    fun setListener(listener: Listener): RecyclerViewSwipeExt {
+    fun setListener(listener: SwipeListener): RecyclerViewSwipeExt {
         mListener = listener
         return this
     }
@@ -108,7 +105,7 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
             0,
             0
         )
-        mSwipedView = SwipedView(IntArray(0), IntArray(0), emptyArray())
+        mSwipedView = SwipeView(IntArray(0), IntArray(0), emptyArray())
         mSwipedView.setTexts(
             arrayOf(
                 typedArray.getString(R.styleable.RecyclerViewSwipeExt_leftText).toString(),
@@ -148,8 +145,8 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
             .getDimension(R.styleable.RecyclerViewSwipeExt_textSize, 15f).toInt()
     }
 
-     fun createSwipeAble() {
-        val mSwipeCallBack = SwipeLeftRightCallback(
+    fun createSwipeAble() {
+        val mSwipeCallBack = SwipeCallback(
             this, mSwipedView
         )
         ItemTouchHelper(mSwipeCallBack).attachToRecyclerView(recyclerView)

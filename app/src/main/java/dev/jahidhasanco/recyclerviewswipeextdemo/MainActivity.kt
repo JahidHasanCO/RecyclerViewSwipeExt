@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import dev.jahidhasanco.recyclerviewswipeext.SwipeListener
+import dev.jahidhasanco.recyclerviewswipeext.makeLeftRightSwipeAble
 import dev.jahidhasanco.recyclerviewswipeextdemo.data.model.ItemsViewModel
-import dev.jahidhasanco.recyclerviewswipeextdemo.lib.SwipeLeftRightCallback
-import dev.jahidhasanco.recyclerviewswipeextdemo.lib.makeLeftRightSwipeAble
 import dev.jahidhasanco.recyclerviewswipeextdemo.presentation.adapter.CustomAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -40,23 +40,27 @@ class MainActivity : AppCompatActivity() {
             .setRightText("Delete Right")
             .setLeftBg(R.color.purple_500)
             .setRightBg(R.color.purple_500)
-            .setListener(object :SwipeLeftRightCallback.Listener{
+            .setListener(object : SwipeListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onSwipedLeft(position: Int) {
                     data.removeAt(position)
                     adapter.notifyDataSetChanged();
-                    Snackbar.make(recyclerview,
+                    Snackbar.make(
+                        recyclerview,
                         "Item $position Marked As Read",
-                        Snackbar.LENGTH_LONG).show();
+                        Snackbar.LENGTH_LONG
+                    ).show();
                 }
 
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onSwipedRight(position: Int) {
                     data.removeAt(position)
                     adapter.notifyDataSetChanged();
-                    Snackbar.make(recyclerview,
+                    Snackbar.make(
+                        recyclerview,
                         "Item $position Removed",
-                        Snackbar.LENGTH_LONG).show();
+                        Snackbar.LENGTH_LONG
+                    ).show();
                 }
 
             }).createSwipeAble()

@@ -1,6 +1,6 @@
-package dev.jahidhasanco.recyclerviewswipeextdemo.lib
+package dev.jahidhasanco.recyclerviewswipeext
 
-class SwipedView constructor(icons: IntArray, backgrounds: IntArray, texts: Array<String>){
+class SwipeView constructor(icons: IntArray, backgrounds: IntArray, texts: Array<String>){
 
     private var mIcons: IntArray
     private var mBackgrounds: IntArray

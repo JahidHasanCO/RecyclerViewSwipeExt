@@ -20,37 +20,45 @@ class MainActivity : AppCompatActivity() {
 
         val data = ArrayList<ItemsViewModel>()
         for (i in 1..20) {
-            data.add(ItemsViewModel(R.drawable.baseline_markunread_24, "Item $i"))
+            data.add(ItemsViewModel(R.drawable.baseline_outlet_24, "Item $i"))
         }
 
         val adapter = CustomAdapter(data)
         recyclerview.adapter = adapter
 
         recyclerview.makeLeftRightSwipeAble(this)
-            .setLeftText("Delete")
-            .setRightText("Archive")
-            .setTextColor(R.color.white)
             .setListener(object : SwipeListener {
-
                 override fun onSwipedLeft(position: Int) {
+                    val deletedItem = data[position]
                     data.removeAt(position)
-                    adapter.notifyDataSetChanged();
+                    adapter.notifyItemRemoved(position)
                     Snackbar.make(
                         recyclerview,
-                        "Item $position Left",
+                        "Item $position Archive",
                         Snackbar.LENGTH_LONG
-                    ).show();
+                    ).setAction(
+                        "Undo"
+                    ) {
+                        data.add(position, deletedItem)
+                        adapter.notifyItemInserted(position)
+                    }.show()
                 }
 
 
                 override fun onSwipedRight(position: Int) {
-//                    data.removeAt(position)
-                    adapter.notifyDataSetChanged();
+                    val deletedItem = data[position]
+                    data.removeAt(position)
+                    adapter.notifyItemRemoved(position)
                     Snackbar.make(
                         recyclerview,
-                        "Item $position Right",
+                        "Item $position Deleted",
                         Snackbar.LENGTH_LONG
-                    ).show();
+                    ).setAction(
+                        "Undo"
+                    ) {
+                        data.add(position, deletedItem)
+                        adapter.notifyItemInserted(position)
+                    }.show()
                 }
 
             })

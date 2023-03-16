@@ -16,9 +16,9 @@ class ChildToDraw
     private val swipeView: SwipeView
 ) {
     var bg: ColorDrawable? = null
-     var icon: Drawable? = null
-     var paintText: Paint? = null
-     var text: String? = null
+    var icon: Drawable? = null
+    var paintText: Paint? = null
+    var text: String? = null
 
     operator fun invoke(): ChildToDraw {
         var iconMargin = 0
@@ -29,7 +29,7 @@ class ChildToDraw
                 context,
                 if (mSide == LEFT) swipeView.leftIcon else swipeView.rightIcon
             )
-            iconMargin = (v.height - icon!!.intrinsicHeight + (text?.length?:0))/ 2
+            iconMargin = (v.height - icon!!.intrinsicHeight + (text?.length ?: 0)) / 2
             iconTop = v.top + (v.height - icon!!.intrinsicHeight) / 2
             iconBottom = iconTop + icon!!.intrinsicHeight
         } catch (e: Exception) {
@@ -48,7 +48,7 @@ class ChildToDraw
                 }
                 bg = ColorDrawable(
                     context.resources
-                        .getColor(swipeView.leftBg,context.theme)
+                        .getColor(swipeView.leftBg, context.theme)
                 )
                 bg!!.setBounds(
                     v.left, v.top, v.left +
@@ -64,7 +64,7 @@ class ChildToDraw
                 }
                 bg = ColorDrawable(
                     context.resources
-                        .getColor(swipeView.rightBg,context.theme)
+                        .getColor(swipeView.rightBg, context.theme)
                 )
                 bg!!.setBounds(
                     v.right + dX, v.top,
@@ -83,8 +83,8 @@ class ChildToDraw
         return this
     }
 
-        companion object {
-            const val LEFT = 0
-            const val RIGHT = 1
-        }
+    companion object {
+        const val LEFT = 0
+        const val RIGHT = 1
+    }
 }

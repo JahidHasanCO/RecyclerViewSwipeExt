@@ -6,14 +6,18 @@ import android.util.AttributeSet
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val recyclerView: RecyclerView): SwipeListener {
+class RecyclerViewSwipeExt(
+    context: Context,
+    attrs: AttributeSet?,
+    private val recyclerView: RecyclerView
+) : SwipeListener {
 
     private var mListener: SwipeListener? = null
     private lateinit var mSwipedView: SwipeView
 
     init {
-        createSwipedView(context,attrs);
-        recyclerView.setWillNotDraw(false);
+        createSwipedView(context, attrs)
+        recyclerView.setWillNotDraw(false)
     }
 
     fun setRightBg(bg: Int): RecyclerViewSwipeExt {
@@ -62,11 +66,11 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
     }
 
     override fun onSwipedLeft(position: Int) {
-        mListener?.onSwipedLeft(position);
+        mListener?.onSwipedLeft(position)
     }
 
     override fun onSwipedRight(position: Int) {
-        mListener?.onSwipedRight(position);
+        mListener?.onSwipedRight(position)
     }
 
     private fun createSwipedView(context: Context, attrs: AttributeSet?) {
@@ -95,6 +99,9 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
 
 }
 
-fun RecyclerView.makeLeftRightSwipeAble(context: Context,attrs: AttributeSet? = null): RecyclerViewSwipeExt {
-    return RecyclerViewSwipeExt(context,attrs,this)
+fun RecyclerView.makeLeftRightSwipeAble(
+    context: Context,
+    attrs: AttributeSet? = null
+): RecyclerViewSwipeExt {
+    return RecyclerViewSwipeExt(context, attrs, this)
 }

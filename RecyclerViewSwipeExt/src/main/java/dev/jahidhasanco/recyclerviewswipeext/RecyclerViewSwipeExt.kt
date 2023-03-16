@@ -17,60 +17,32 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
     }
 
     fun setRightBg(bg: Int): RecyclerViewSwipeExt {
-        mSwipedView.setBackgrounds(
-            intArrayOf(
-                mSwipedView.leftBg, bg
-            )
-        )
+        mSwipedView.rightBg = bg
         return this
     }
 
     fun setLeftBg(bg: Int): RecyclerViewSwipeExt {
-        mSwipedView.setBackgrounds(
-            intArrayOf(
-                bg, mSwipedView.rightBg
-            )
-        )
+        mSwipedView.leftBg = bg
         return this
     }
 
     fun setRightText(text: String): RecyclerViewSwipeExt {
-        mSwipedView.setTexts(
-            arrayOf(
-                mSwipedView.leftText,
-                text
-            )
-        )
+        mSwipedView.rightText = text
         return this
     }
 
     fun setLeftText(text: String): RecyclerViewSwipeExt {
-        mSwipedView.setTexts(
-            arrayOf(
-                text,
-                mSwipedView.rightText
-            )
-        )
+        mSwipedView.leftText = text
         return this
     }
 
     fun setRightImage(imgRef: Int): RecyclerViewSwipeExt {
-        mSwipedView.setIcons(
-            intArrayOf(
-                mSwipedView.leftIcon,
-                imgRef
-            )
-        )
+        mSwipedView.rightIcon = imgRef
         return this
     }
 
     fun setLeftImage(imgRef: Int): RecyclerViewSwipeExt {
-        mSwipedView.setIcons(
-            intArrayOf(
-                imgRef,
-                mSwipedView.rightIcon
-            )
-        )
+        mSwipedView.leftIcon = imgRef
         return this
     }
 
@@ -106,38 +78,7 @@ class RecyclerViewSwipeExt(context: Context, attrs: AttributeSet?, private val r
             0
         )
         mSwipedView = SwipeView(IntArray(0), IntArray(0), emptyArray())
-        mSwipedView.setTexts(
-            arrayOf(
-                typedArray.getString(R.styleable.RecyclerViewSwipeExt_leftText).toString(),
-                typedArray.getString(R.styleable.RecyclerViewSwipeExt_rightText).toString()
-            )
-        )
-        mSwipedView.setBackgrounds(
-            intArrayOf(
-                typedArray.getResourceId(
-                    R.styleable.RecyclerViewSwipeExt_leftBgColor, R.color.white
-                ),
-                typedArray.getResourceId(
-                    R.styleable.RecyclerViewSwipeExt_rightBgColor, R.color.white
-                )
-            )
-        )
-        mSwipedView.setIcons(
-            intArrayOf(
-                typedArray.getResourceId(
-                    R.styleable.RecyclerViewSwipeExt_leftImage, -1
-                ),
-                typedArray.getResourceId(
-                    R.styleable.RecyclerViewSwipeExt_rightImage, -1
-                )
-            )
-        )
-        mSwipedView.setTexts(
-            arrayOf(
-                typedArray.getString(R.styleable.RecyclerViewSwipeExt_leftText).toString(),
-                typedArray.getString(R.styleable.RecyclerViewSwipeExt_rightText).toString()
-            )
-        )
+
         mSwipedView.textColor = typedArray.getColor(
             R.styleable.RecyclerViewSwipeExt_textColor, Color.BLACK
         )

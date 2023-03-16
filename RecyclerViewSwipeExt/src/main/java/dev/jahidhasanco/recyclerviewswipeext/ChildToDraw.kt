@@ -29,7 +29,7 @@ class ChildToDraw
                 context,
                 if (mSide == LEFT) swipeView.leftIcon else swipeView.rightIcon
             )
-            iconMargin = (v.height - icon!!.intrinsicHeight) / 2
+            iconMargin = (v.height - icon!!.intrinsicHeight + (text?.length?:0))/ 2
             iconTop = v.top + (v.height - icon!!.intrinsicHeight) / 2
             iconBottom = iconTop + icon!!.intrinsicHeight
         } catch (e: Exception) {
@@ -48,7 +48,7 @@ class ChildToDraw
                 }
                 bg = ColorDrawable(
                     context.resources
-                        .getColor(swipeView.leftBg)
+                        .getColor(swipeView.leftBg,context.theme)
                 )
                 bg!!.setBounds(
                     v.left, v.top, v.left +
@@ -64,7 +64,7 @@ class ChildToDraw
                 }
                 bg = ColorDrawable(
                     context.resources
-                        .getColor(swipeView.rightBg)
+                        .getColor(swipeView.rightBg,context.theme)
                 )
                 bg!!.setBounds(
                     v.right + dX, v.top,

@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // getting the recyclerview by its id
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
 
         recyclerview.layoutManager = LinearLayoutManager(this)
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // This loop will create 20 Views containing
         // the image with the count of view
         for (i in 1..20) {
-            data.add(ItemsViewModel(R.drawable.ic_launcher_foreground, "Item " + i))
+            data.add(ItemsViewModel(R.drawable.baseline_markunread_24, "Item $i"))
         }
 
         // This will pass the ArrayList to our Adapter
@@ -36,10 +35,9 @@ class MainActivity : AppCompatActivity() {
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
         recyclerview.makeLeftRightSwipeAble(this)
-            .setLeftText("Delete Left")
-            .setRightText("Delete Right")
-            .setLeftBg(R.color.purple_500)
-            .setRightBg(R.color.purple_500)
+            .setLeftText("Delete")
+            .setRightText("Archive")
+            .setTextColor(R.color.white)
             .setListener(object : SwipeListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onSwipedLeft(position: Int) {
@@ -47,15 +45,15 @@ class MainActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged();
                     Snackbar.make(
                         recyclerview,
-                        "Item $position Marked As Read",
+                        "Item $position Archived",
                         Snackbar.LENGTH_LONG
                     ).show();
                 }
 
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onSwipedRight(position: Int) {
-                    data.removeAt(position)
-                    adapter.notifyDataSetChanged();
+//                    data.removeAt(position)
+//                    adapter.notifyDataSetChanged();
                     Snackbar.make(
                         recyclerview,
                         "Item $position Removed",
@@ -63,7 +61,8 @@ class MainActivity : AppCompatActivity() {
                     ).show();
                 }
 
-            }).createSwipeAble()
+            })
+            .createSwipeAble()
 
     }
 }

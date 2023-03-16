@@ -1,6 +1,5 @@
 package dev.jahidhasanco.recyclerviewswipeextdemo
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,46 +16,39 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
-
         recyclerview.layoutManager = LinearLayoutManager(this)
 
-        // ArrayList of class ItemsViewModel
         val data = ArrayList<ItemsViewModel>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
         for (i in 1..20) {
             data.add(ItemsViewModel(R.drawable.baseline_markunread_24, "Item $i"))
         }
 
-        // This will pass the ArrayList to our Adapter
         val adapter = CustomAdapter(data)
-
-        // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter
+
         recyclerview.makeLeftRightSwipeAble(this)
             .setLeftText("Delete")
             .setRightText("Archive")
             .setTextColor(R.color.white)
             .setListener(object : SwipeListener {
-                @SuppressLint("NotifyDataSetChanged")
+
                 override fun onSwipedLeft(position: Int) {
                     data.removeAt(position)
                     adapter.notifyDataSetChanged();
                     Snackbar.make(
                         recyclerview,
-                        "Item $position Archived",
+                        "Item $position Left",
                         Snackbar.LENGTH_LONG
                     ).show();
                 }
 
-                @SuppressLint("NotifyDataSetChanged")
+
                 override fun onSwipedRight(position: Int) {
 //                    data.removeAt(position)
-//                    adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                     Snackbar.make(
                         recyclerview,
-                        "Item $position Removed",
+                        "Item $position Right",
                         Snackbar.LENGTH_LONG
                     ).show();
                 }

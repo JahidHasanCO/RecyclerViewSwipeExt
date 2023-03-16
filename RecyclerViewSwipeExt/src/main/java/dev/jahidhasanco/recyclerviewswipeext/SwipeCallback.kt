@@ -74,7 +74,7 @@ class SwipeCallback constructor(
         c.drawText(
             toDraw.text?:"", icon?.bounds?.centerX()?.toFloat()?:0f,
             (icon?.bounds?.centerY()?.toFloat() ?: 0f) + (icon?.bounds?.height()?:0) +
-                    convertDpToPixel(2f, context), (paint!!)
+                    convertDpToPixel(5f, context), (paint!!)
         )
     }
 

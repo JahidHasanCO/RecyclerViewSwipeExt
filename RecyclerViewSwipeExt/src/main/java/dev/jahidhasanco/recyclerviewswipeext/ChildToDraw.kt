@@ -29,9 +29,21 @@ class ChildToDraw
                 context,
                 if (mSide == LEFT) swipeView.leftIcon else swipeView.rightIcon
             )
-            iconMargin = (v.height - icon!!.intrinsicHeight + (text?.length ?: 0)) / 2
-            iconTop = v.top + (v.height - icon!!.intrinsicHeight) / 2
-            iconBottom = iconTop + icon!!.intrinsicHeight
+            iconMargin = (v.height - icon!!.intrinsicHeight) / 2
+            iconTop =
+                if ((mSide == LEFT && swipeView.leftText.isEmpty()) or (mSide == RIGHT && swipeView.rightText.isEmpty())) {
+                    v.top + (v.height - icon!!.intrinsicHeight) / 2
+                } else {
+                    v.top + (v.height - icon!!.intrinsicHeight - swipeView.textSize) / 2
+                }
+
+            iconBottom =
+                if ((mSide == LEFT && swipeView.leftText.isEmpty()) or (mSide == RIGHT && swipeView.rightText.isEmpty())) {
+                    iconTop + icon!!.intrinsicHeight
+                } else {
+                    iconTop + icon!!.intrinsicHeight - swipeView.textSize
+                }
+
         } catch (e: Exception) {
             icon = null
             e.printStackTrace()
@@ -42,7 +54,7 @@ class ChildToDraw
             LEFT -> {
                 text = swipeView.leftText
                 if (icon != null) {
-                    iconLeft = v.left + iconMargin
+                    iconLeft = v.left + iconMargin + (text!!.length /2)
                     iconRight = v.left + iconMargin + icon!!.intrinsicWidth
                     icon!!.setBounds(iconLeft, iconTop, iconRight, iconBottom)
                 }
@@ -59,7 +71,7 @@ class ChildToDraw
                 text = swipeView.rightText
                 if (icon != null) {
                     iconLeft = v.right - iconMargin - icon!!.intrinsicWidth
-                    iconRight = v.right - iconMargin
+                    iconRight = v.right - iconMargin + (text!!.length /2)
                     icon!!.setBounds(iconLeft, iconTop, iconRight, iconBottom)
                 }
                 bg = ColorDrawable(

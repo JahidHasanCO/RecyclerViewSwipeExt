@@ -1,6 +1,7 @@
 package dev.jahidhasanco.recyclerviewswipeext
 
 import android.content.Context
+import android.graphics.BlendMode
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
@@ -69,6 +70,7 @@ class SwipeCallback constructor(
         val bg: ColorDrawable? = toDraw.bg
         val icon: Drawable? = toDraw.icon
         val paint: Paint? = toDraw.paintText
+        paint?.color = swipeView.textColor
         bg?.draw(c)
         icon?.draw(c)
         c.drawText(
@@ -80,18 +82,18 @@ class SwipeCallback constructor(
 
     private fun returnMovementFlags(): Int {
         if (((swipeView.leftIcon == -1) && (
-                    swipeView.leftBg == R.color.white) &&
+                    swipeView.leftBg == R.color.error) &&
                     swipeView.leftText.isEmpty() && (
                     swipeView.rightIcon == -1) && (
-                    swipeView.rightBg == R.color.white) &&
+                    swipeView.rightBg == R.color.success) &&
                     swipeView.rightText.isEmpty())
         ) return makeMovementFlags(0, 0)
         if (((swipeView.leftIcon == -1) && (
-                    swipeView.leftBg == R.color.white) &&
+                    swipeView.leftBg == R.color.error) &&
                     swipeView.leftText.isEmpty())
         ) return makeMovementFlags(0, ItemTouchHelper.LEFT)
         return if (((swipeView.leftIcon == -1) && (
-                    swipeView.rightBg == R.color.white) &&
+                    swipeView.rightBg == R.color.success) &&
                     swipeView.rightText.isEmpty())
         ) makeMovementFlags(0, ItemTouchHelper.RIGHT) else -1
     }

@@ -18,7 +18,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="5dp"
-            android:src="@drawable/baseline_markunread_24" />
+            />
 
         <TextView
             android:id="@+id/textView"
@@ -26,7 +26,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:text="Item"
             android:textSize="20sp"
             android:textStyle="bold" />
 

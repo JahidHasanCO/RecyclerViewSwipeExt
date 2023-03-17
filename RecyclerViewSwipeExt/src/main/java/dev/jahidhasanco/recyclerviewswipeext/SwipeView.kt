@@ -11,7 +11,7 @@ class SwipeView constructor(icons: IntArray, backgrounds: IntArray, texts: Array
     var rightText: String = ""
 
     var leftIcon: Int = R.drawable.baseline_delete_24
-    var rightIcon: Int = R.drawable.baseline_markunread_24
+    var rightIcon: Int = R.drawable.baseline_archive_24
     var leftBg: Int = R.color.error
     var rightBg: Int = R.color.success
 

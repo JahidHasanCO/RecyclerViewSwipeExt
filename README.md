@@ -1,4 +1,4 @@
-![GitHub Cards Preview](https://github.com/JahidHasanCO/BuyNow-App/blob/master/ART/cover.png)
+![GitHub Cards Preview](https://github.com/JahidHasanCO/RecyclerViewSwipeExt/blob/master/ART/cover.png)
 
 # RecyclerViewSwipeExt
 RecyclerViewSwipeExt is an Android Studio library that simplifies the implementation of swipe-to-delete and swipe-to-action functionality in RecyclerViews. With just a few lines of code, you can add left and right swipe gestures to your RecyclerViews, allowing users to delete or perform custom actions on items with ease. The library is highly customizable, allowing you to modify the swipe animations, icons, and colors to fit your app's design. Get started quickly with the easy-to-follow documentation and sample code. Streamline your app's user experience with RecyclerViewSwipeExt. [![](https://jitpack.io/v/JahidHasanCO/RecyclerViewSwipeExt.svg)](https://jitpack.io/#JahidHasanCO/RecyclerViewSwipeExt)
@@ -28,8 +28,6 @@ dependencies {
 
 For `Maven` [check this](docs/maven.md) for your reference.
 
-<img src="https://github.com/JahidHasanCO/RecyclerViewSwipeExt/blob/master/ART/sample-code.png">
-
 ### Documentation
 `RecyclerViewSwipeExt`
 `Extension function of RecyclerView` 
@@ -53,6 +51,7 @@ To initialize `RecyclerViewSwipeExt` you need to call this Extension function af
             })
             .createSwipeAble()
 ```
+<img src="https://github.com/JahidHasanCO/RecyclerViewSwipeExt/blob/master/ART/sample-code.png">
 
 ### Other Extension Methods
 method | Details |

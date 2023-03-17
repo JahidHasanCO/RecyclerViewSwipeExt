@@ -62,6 +62,61 @@ method | Details |
 `fun setTextSize(size: Int)` | `fun setTextSize(size: Int)` set text size. It take `int` as a Parameter. | 
 `fun setListener(listener: SwipeListener)` | `fun setListener(listener: SwipeListener)` set swipe listener to track swipe. It take `SwipeListener` `object` as a Parameter. | 
 
+
+### Examples
+```koltin
+        val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        val data = ArrayList<ItemsViewModel>()
+        for (i in 1..20) {
+            data.add(ItemsViewModel(R.drawable.baseline_outlet_24, "Item $i"))
+        }
+
+        val adapter = CustomAdapter(data)
+        recyclerview.adapter = adapter
+```
+
+```kotlin
+ recyclerview.makeLeftRightSwipeAble(this)
+            .setListener(object : SwipeListener {
+                override fun onSwipedLeft(position: Int) {
+                    val deletedItem = data[position]
+                    data.removeAt(position)
+                    adapter.notifyItemRemoved(position)
+                    Snackbar.make(
+                        recyclerview,
+                        "Item $position Archive",
+                        Snackbar.LENGTH_LONG
+                    ).setAction(
+                        "Undo"
+                    ) {
+                        data.add(position, deletedItem)
+                        adapter.notifyItemInserted(position)
+                    }.show()
+                }
+
+
+                override fun onSwipedRight(position: Int) {
+                    val deletedItem = data[position]
+                    data.removeAt(position)
+                    adapter.notifyItemRemoved(position)
+                    Snackbar.make(
+                        recyclerview,
+                        "Item $position Deleted",
+                        Snackbar.LENGTH_LONG
+                    ).setAction(
+                        "Undo"
+                    ) {
+                        data.add(position, deletedItem)
+                        adapter.notifyItemInserted(position)
+                    }.show()
+                }
+
+            })
+            .createSwipeAble()
+```
+
 ### License
 RecyclerViewSwipeExt is [MIT licensed.](LICENSE)
 
